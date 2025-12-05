@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Peñaranda: Places to Visit</title>
+    <link rel="stylesheet" href="places.css"> 
+</head>
+<body>
+
+    <header class="hero">
+        <h1>✨ Discover Peñaranda, Nueva Ecija ✨</h1>
+        <p id="location-status">Checking your location...</p>
+    </header>
+
+   <main class="container">
+    <div class="card">
+        <h2>Peñaranda Municipal Plaza</h2>
+        <p>The heart of the town, this plaza is the perfect spot to relax and observe community events.</p>
+        <a href="#" class="btn open-modal" data-place="plaza" data-title="Municipal Plaza" data-description="This is the true heart of Peñaranda..." data-image-url="plaza.jpg">View Details</a>
+    </div>
+
+    <div class="card">
+        <h2>St. Francis of Assisi Parish Church</h2>
+        <p>A historical church showcasing the architecture and deep-seated faith of the town.</p>
+        <a href="#" class="btn open-modal" data-place="church" data-title="Parish Church" data-description="A beautiful, century-old structure..." data-image-url="simbahan.jpg">View Details</a>
+    </div>
+
+    <div class="card">
+        <h2>Peñaranda River</h2>
+        <p>The life-giving river of Peñaranda. Known for its scenic views and tranquil flow of water.</p>
+        <a href="#" class="btn open-modal" data-place="river" data-title="Peñaranda River" data-description="This river is vital to the town's agriculture..." data-image-url="ilog.jpg">View Details</a>
+    </div>
+
+    <div class="card">
+        <h2>Popular Resorts</h2>
+        <p>Resorts featuring swimming pools and cottages, perfect for family outings and summer getaways.</p>
+        <a href="#" class="btn open-modal" data-place="resorts" data-title="Local Resorts" data-description="These are Peñaranda's top resorts..." data-image-url="D%20Mariners.jpg">View Details</a>
+        </div>
+</main>
+    <footer>
+        <p>&copy; 2025 Peñaranda Tourism Sample</p>
+    </footer>
+
+    <div id="placeModal" class="modal">
+        <div class="modal-content">
+            <span class="close-btn">&times;</span>
+            <h3 id="modal-title"></h3>
+            <img id="modal-image" src="" alt="Place Image">
+            <p id="modal-description"></p>
+        </div>
+    </div>
+
+    <script src="places.js"></script> 
+</body>
+</html>

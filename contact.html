@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Contact – Peñaranda Vista</title>
+
+<link rel="stylesheet" href="pen.css">
+
+<!-- Leaflet CSS -->
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+
+</head>
+<body>
+
+<!-- TOP NAV -->
+<div class="topnav">
+    <a href="index.html" class="site-name">
+        Peñaranda_<span class="italic">Vista</span> <span class="flag">🇵🇭</span>
+    </a>
+    <div class="menu">
+        <a href="index.html">Home</a>
+        <a href="explore.html">Explore</a>
+        <a href="resorts.html">Resorts</a>
+        <a href="contact.html" class="active">Contact</a>
+    </div>
+</div>
+
+<!-- HEADER -->
+<div class="header contact-header">
+    <h1>Contact Us</h1>
+    <p>We’d love to hear from you! Reach out through any method below.</p>
+</div>
+
+<!-- CONTACT SECTION -->
+<div class="contact-container">
+
+    <!-- CONTACT INFO -->
+    <div class="contact-info card">
+        <h2>Get in Touch</h2>
+
+        <p><strong>📍 Address:</strong><br>
+        Peñaranda, Nueva Ecija, Philippines</p>
+
+        <p><strong>📞 Phone:</strong><br>
+        +63 900 000 0000</p>
+
+        <p><strong>📧 Email:</strong><br>
+        penaranda.vista@email.com</p>
+
+        <p><strong>⏰ Office Hours:</strong><br>
+        Monday – Saturday<br>
+        8:00 AM – 5:00 PM</p>
+
+        <!-- Map Container for Leaflet -->
+        <div id="map" style="height: 400px; margin-top: 20px;"></div>
+    </div>
+
+    <!-- Contact Form -->
+    <form id="contactForm" class="contact-form">
+        <input type="text" name="name" required placeholder="Your Name">
+        <input type="email" name="email" required placeholder="Your Email">
+        <textarea name="message" required placeholder="Your Message"></textarea>
+        <button type="submit">Send</button>
+    </form>
+
+    <!-- Success Message -->
+    <div id="msg" class="hidden">Message sent successfully!</div>
+
+</div>
+
+<!-- FOOTER -->
+<div class="footer">
+    © 2025 Peñaranda Vista — All Rights Reserved
+</div>
+
+<!-- Leaflet JS -->
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
+<!-- Contact JS -->
+<script src="contacts.js"></script>
+
+</body>
+</html>

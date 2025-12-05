@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>G1 – Location Info</title>
+    <link rel="stylesheet" href="pen.css">
+
+    <style>
+        /* FULL BACKGROUND IMAGE WITH BLUR */
+        body {
+            margin: 0;
+            padding: 0;
+            background: url('simbahan.jpg') no-repeat center center/cover;
+            font-family: "Poppins", sans-serif;
+            transition: background 0.3s ease; /* For smooth theme change if pen.css handles it */
+        }
+
+        .overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.40);
+            backdrop-filter: blur(6px);
+            z-index: -1;
+            transition: backdrop-filter 0.3s ease;
+        }
+
+        /* WRAPPER */
+        .location-wrapper {
+            padding: 70px 20px;
+            display: flex;
+            justify-content: center;
+        }
+
+        /* GLASS CARD */
+        .details-container {
+            background: rgba(255, 255, 255, 0.22);
+            padding: 45px;
+            border-radius: 25px;
+            backdrop-filter: blur(15px);
+            width: 100%;
+            max-width: 1100px;
+            box-shadow: 0 0 25px rgba(0,0,0,0.3);
+            border: 1px solid rgba(255,255,255,0.35);
+        }
+
+        /* TITLE */
+        .page-title {
+            text-align: center;
+            color: #e8ffdb;
+            font-size: 36px;
+            margin-bottom: 25px;
+            text-shadow: 0 0 8px rgba(0,0,0,0.25);
+        }
+
+        /* IMAGE GALLERY */
+        .image-gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fit,minmax(250px,1fr));
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+
+        .image-gallery img {
+            width: 100%;
+            border-radius: 16px;
+            box-shadow: 0 0 18px rgba(0,0,0,0.4);
+            height: 260px;
+            object-fit: cover;
+            cursor: zoom-in; /* Indicate that the image is clickable */
+            transition: transform 0.2s;
+        }
+        .image-gallery img:hover {
+            transform: scale(1.02);
+        }
+
+        /* TEXT AREA */
+        .details-text {
+            color: #f5ffe9;
+            font-size: 18px;
+            line-height: 1.8;
+        }
+        .details-text p {
+            color: inherit; /* Ensure text color is inherited */
+        }
+
+        /* BUTTON GROUP */
+        .btn-group {
+            margin-top: 25px;
+        }
+
+        /* BUTTONS */
+        .directions-btn,
+        .back-btn {
+            display: inline-block;
+            padding: 12px 22px;
+            background: #2e7d32;
+            color: white;
+            border-radius: 10px;
+            text-decoration: none;
+            margin-right: 10px;
+            font-weight: 600;
+            transition: 0.3s;
+        }
+
+        .directions-btn:hover {
+            background: #43a047;
+        }
+
+        .back-btn {
+            background: #4e4e4e;
+        }
+
+        .back-btn:hover {
+            background: #6f6f6f;
+        }
+
+        /* ========================================= */
+        /* MODAL / LIGHTBOX STYLES (NEW) */
+        /* ========================================= */
+        .modal {
+            display: none; /* Hidden by default */
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.9); /* Dark background */
+            justify-content: center;
+            align-items: center;
+        }
+
+        .modal-content {
+            margin: auto;
+            display: block;
+            width: 90%;
+            max-width: 900px;
+            border-radius: 10px;
+            animation: zoom 0.6s;
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 20px;
+            right: 35px;
+            color: #f1f1f1;
+            font-size: 40px;
+            font-weight: bold;
+            transition: 0.3s;
+            cursor: pointer;
+        }
+
+        .modal-close:hover,
+        .modal-close:focus {
+            color: #bbb;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        @keyframes zoom {
+            from {transform:scale(0)} 
+            to {transform:scale(1)}
+        }
+        
+        /* RESPONSIVE MODAL */
+        @media only screen and (max-width: 700px){
+            .modal-content {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="overlay"></div>
+
+<div class="topnav">
+    <a href="index.html" class="site-name">
+        Peñaranda_<span class="italic">Vista</span> <span class="flag">🇵🇭</span>
+    </a>
+
+    <div class="menu">
+        <a href="index.html">HOME</a>
+        <a href="resorts.html">RESORTS</a>
+        <a href="#">FOOD PLACE</a>
+    </div>
+</div>
+
+<section class="location-wrapper">
+
+    <div class="details-container">
+
+        <h2 class="page-title">PARROQUIA DE SAN FRANCISCO DE ASIS</h2>
+
+        <div class="image-gallery">
+            <img src="simbahan4.jpg" alt="St. Francis of Assisi Church Exterior" onclick="openModal(this)">
+            <img src="simbahan3.jpg" alt="Church Bell Tower" onclick="openModal(this)">
+            <img src="simbahan1.jpg" alt="Church Interior view" onclick="openModal(this)">
+        </div>
+
+        <div class="details-text">
+            <p>
+                The **St. Francis of Assisi Parish** is one of the most cherished landmarks in Peñaranda, known for its peaceful atmosphere and deep spiritual significance. Built with traditional Filipino design and strengthened through generations, the parish stands as a symbol of faith, community, and culture.
+            </p><br>
+            <p>
+                For many locals, this church is more than just a place of worship—it is a space for reflection, celebration, and connection. Important life events such as baptisms, weddings, and fiestas are often held here, making it a meaningful part of every Peñarandeño’s life.
+            </p><br>
+            <p>
+                Surrounded by a calm environment and a warm community, the parish welcomes both visitors and devotees who wish to pray, appreciate the architecture, or learn more about the rich Catholic heritage of the town. Its gentle ambiance and historic charm make it one of the most visited spiritual destinations in Peñaranda.
+            </p>
+
+            <div class="btn-group">
+                <a href="https://maps.app.goo.gl/DMVyw8QxhdyhQbNG6" target="_blank" class="directions-btn">
+                    View Location on Map
+                </a>
+
+                <a href="explore.html" class="back-btn">← Back to Home</a>
+            </div>
+        </div>
+
+    </div>
+</section>
+
+<footer>
+    <p>Contact us: <a href="mailto:yourgmail@gmail.com">Peñaranda_vista@gmail.com</a></p>
+    <p>© Peñaranda_vista.ph — All Rights Reserved</p>
+</footer>
+
+<div id="myModal" class="modal" onclick="closeModal()">
+    <span class="modal-close">&times;</span>
+    <img class="modal-content" id="img01">
+    <div id="caption"></div>
+</div>
+
+<script src="simbhan.js"></script>
+
+</body>
+</html>

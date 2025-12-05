@@ -1,0 +1,197 @@
+/* Global Styles & Font - Gumamit ng mas appealing na font-family */
+body {
+    font-family: 'Poppins', sans-serif; /* Mas modernong font */
+    margin: 0;
+    padding: 0;
+    background-color: #eef4f9; /* Soft, light background */
+    color: #333;
+    line-height: 1.6;
+}
+
+/* Import ng Poppins Font (Dapat nasa HTML head ito para maging tama) 
+   NOTE: Mas maganda kung ilalagay mo ito sa <head> ng index.html: 
+   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+*/
+
+/* Header/Hero Section - Gradient Background at Eye-catching Design */
+.hero {
+    /* Gradient: Blue-Green na nagbibigay ng fresh at welcoming look */
+    background: linear-gradient(135deg, #007bff 0%, #00c6a7 100%); 
+    color: white;
+    padding: 80px 20px;
+    text-align: center;
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2); /* Stronger shadow */
+    border-bottom-left-radius: 20px;
+    border-bottom-right-radius: 20px;
+}
+
+.hero h1 {
+    font-size: 3em;
+    margin-bottom: 10px;
+    font-weight: 700; /* Bolder text */
+    letter-spacing: 1px;
+    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.hero p#location-status {
+    font-size: 1.1em;
+    font-style: italic;
+    margin-top: 15px;
+    padding: 5px 15px;
+    background-color: rgba(255, 255, 255, 0.15);
+    border-radius: 5px;
+    display: inline-block;
+}
+
+/* Container for Responsiveness (Grid Layout) */
+.container {
+    max-width: 1200px;
+    margin: 40px auto;
+    padding: 0 20px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+}
+
+/* Card Style (Premium Look) */
+.card {
+    background-color: white;
+    padding: 30px;
+    border-radius: 15px; /* Softer edges */
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1); /* Soft and deep shadow */
+    transition: transform 0.4s ease, box-shadow 0.4s ease;
+    border: 1px solid #ddd; /* Light border */
+}
+
+/* Interactive Hover Effect - Mas dramatic */
+.card:hover {
+    transform: translateY(-8px) scale(1.02); /* Mas mataas na pag-angat at slight zoom */
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2); /* Mas matingkad na shadow */
+    border-color: #00c6a7; /* Accent border color on hover */
+}
+
+.card h2 {
+    color: #007bff; /* Primary Blue */
+    margin-top: 0;
+    font-size: 1.6em;
+    border-bottom: 2px solid #00c6a7; /* Teal accent line */
+    padding-bottom: 10px;
+    margin-bottom: 15px;
+}
+
+.card p {
+    color: #555;
+    font-size: 1em;
+}
+
+/* Button Styling - Vibrant at Defined */
+.btn {
+    display: inline-block;
+    background-color: #ff9900; /* Vibrant Orange/Gold color */
+    color: white;
+    padding: 12px 25px;
+    text-decoration: none;
+    border-radius: 50px; /* Pill shape */
+    margin-top: 20px;
+    font-weight: 600;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.btn:hover {
+    background-color: #e68a00; /* Darker orange on hover */
+    transform: translateY(-2px); /* Slight press effect */
+}
+
+/* Footer - Clean and Formal */
+footer {
+    text-align: center;
+    padding: 25px;
+    background-color: #343a40; /* Darker, professional footer */
+    color: #adb5bd;
+    margin-top: 50px;
+    font-size: 0.9em;
+}
+
+/* MODAL STYLES */
+.modal {
+    display: none; 
+    position: fixed; 
+    z-index: 100; 
+    left: 0;
+    top: 0;
+    width: 100%; 
+    height: 100%;
+    overflow: auto; 
+    background-color: rgba(0,0,0,0.8); /* Mas matingkad na backdrop */
+    padding-top: 60px;
+}
+
+.modal-content {
+    background-color: #fefefe;
+    margin: 5% auto; 
+    padding: 40px;
+    border-radius: 15px;
+    width: 90%; 
+    max-width: 800px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+    position: relative;
+    animation-name: animatetop;
+    animation-duration: 0.5s; /* Mas smooth na animation */
+}
+
+@keyframes animatetop {
+    from {top: -300px; opacity: 0}
+    to {top: 0; opacity: 1}
+}
+
+.modal-content h3 {
+    color: #007bff;
+    font-size: 2em;
+    margin-bottom: 10px;
+}
+
+.modal-content img {
+    width: 100%;
+    max-height: 450px;
+    object-fit: cover; /* Para mas maganda ang fit ng image */
+    border-radius: 10px;
+    margin: 20px 0;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.close-btn {
+    color: #555;
+    float: right;
+    font-size: 36px;
+    font-weight: lighter;
+    line-height: 1;
+}
+
+.close-btn:hover,
+.close-btn:focus {
+    color: #dc3545; /* Red color on hover */
+    text-decoration: none;
+    cursor: pointer;
+}
+
+/* Responsive Breakpoint */
+@media (max-width: 600px) {
+    .hero {
+        padding: 50px 15px;
+    }
+    .hero h1 {
+        font-size: 2.2em;
+    }
+    .container {
+        grid-template-columns: 1fr; 
+        gap: 20px;
+    }
+    .card {
+        padding: 20px;
+    }
+    .modal-content {
+        width: 95%;
+        margin: 10% auto;
+    }
+}

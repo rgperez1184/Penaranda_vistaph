@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Sailor Mike Private Resort — Peñaranda_Vista</title>
+<link rel="stylesheet" href="resorts.css">
+
+<!-- LEAFLET MAP -->
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
+<!-- ROUTING MACHINE -->
+<link rel="stylesheet" href="https://unpkg.com/leaflet-routing-machine@latest/dist/leaflet-routing-machine.css" />
+<script src="https://unpkg.com/leaflet-routing-machine@latest/dist/leaflet-routing-machine.js"></script>
+
+<style>
+  #liveMap, #map {
+    width: 100%;
+    height: 350px;
+    border-radius: 10px;
+    margin-top: 15px;
+  }
+</style>
+
+</head>
+<body>
+
+<!-- TOP NAV -->
+<div class="topnav">
+    <a href="index.html" class="site-name">Peñaranda_<span class="italic">Vista</span></a>
+    <div class="menu">
+        <a href="contact.html">CONTACT</a>
+        <a href="resorts.html">HOME</a>
+        <a href="explore.html">EXPLORE</a>
+    </div>
+</div>
+
+<!-- FLOATING BOOK NOW BUTTON -->
+<a href="booking.html" class="book-now-btn">BOOK NOW</a>
+
+<!-- HERO + SLIDESHOW -->
+<section class="resort-hero">
+  <h1>Sailor Mike Private Resort</h1>
+  <p>Modern and well-maintained private pool — perfect for family gatherings.</p>
+
+  <div class="slideshow-wrap">
+    <!-- Add data-images for JS slideshow -->
+    <img id="slideImg" class="slide lightbox-trigger" 
+         src="sailormike1.jpg" 
+         data-images='["sailormike1.jpg","sailormike2.jpg","sailormike3.jpg","sailormike4.jpg"]' 
+         alt="Sailor Mike">
+  </div>
+
+  <!-- Thumbnails -->
+  <div class="thumb-row">
+    <img src="sailormike1.jpg" onclick="pick(0)" class="lightbox-trigger">
+    <img src="sailormike2.jpg" onclick="pick(1)" class="lightbox-trigger">
+    <img src="sailormike3.jpg" onclick="pick(2)" class="lightbox-trigger">
+    <img src="sailormike4.jpg" onclick="pick(3)" class="lightbox-trigger">
+  </div>
+</section>
+
+<!-- INFO SECTION -->
+<section class="info-row">
+  <div class="info-left">
+    <h3>About</h3>
+    <p>Sailor Mike Private Resort and Event Place is located in Purok 8, Tumana Road, Brgy. Sto. Tomas, Peñaranda.</p>
+
+    <h4>Amenities</h4>
+    <ul class="amenities">
+      <li>Private pool</li>
+      <li>Cottages & lounge area</li>
+      <li>Videoke</li>
+      <li>Grilling area</li>
+      <li>Parking space</li>
+    </ul>
+
+    <h4>Rates</h4>
+    <p>Day use: ₱3,500 – ₱5,500<br> Overnight: ₱6,000 – ₱8,000</p>
+  </div>
+
+  <aside class="info-right">
+    <h4>Location</h4>
+    <p>Purok 8, Tumana Road, Brgy. Sto. Tomas, Peñaranda</p>
+    <p><strong>Coordinates:</strong> 15.3560, 121.0050</p>
+    <a class="map-link" target="_blank" 
+       href="https://www.google.com/maps/search/?api=1&query=15.3560,121.0050">Open in Google Maps</a>
+  </aside>
+</section>
+
+<!-- ROOM OFFERS -->
+<section class="room-offers">
+  <h2>Room & Cottage Offers</h2>
+  <div class="offers-container">
+    <article class="offer-card">
+      <img src="cottage1.jpg" alt="Cottage A" class="lightbox-trigger">
+      <h3>Cottage A</h3>
+      <p>Cozy 4-person cottage with pool access.</p>
+      <p class="price">₱3,500 / Day Use</p>
+    </article>
+
+    <article class="offer-card">
+      <img src="room1.jpg" alt="Room 1" class="lightbox-trigger">
+      <h3>Overnight Package</h3>
+      <p>Full-day + overnight stay with videoke access. Fully airconditioned.</p>
+      <p class="price">₱10,500 / Overnight</p>
+    </article>
+
+    <article class="offer-card">
+      <img src="room2.jpg" alt="Room 2" class="lightbox-trigger">
+      <h3>Overnight Package</h3>
+      <p>Full-day + overnight stay with videoke access. Fully airconditioned.</p>
+      <p class="price">₱9,500 / Overnight</p>
+    </article>
+
+    <article class="offer-card">
+      <img src="room3.jpg" alt="Room 3" class="lightbox-trigger">
+      <h3>Overnight Package</h3>
+      <p>Full-day + overnight stay with videoke access. Fully airconditioned.</p>
+      <p class="price">₱8,500 / Overnight</p>
+    </article>
+  </div>
+</section>
+
+<!-- GALLERY -->
+<section class="resort-gallery">
+  <h2>Gallery</h2>
+  <div class="gallery-grid">
+    <img src="sailormike1.jpg" alt="Resort view 1" class="lightbox-trigger">
+    <img src="sailormike2.jpg" alt="Resort view 2" class="lightbox-trigger">
+    <img src="sailormike3.jpg" alt="Resort view 3" class="lightbox-trigger">
+    <img src="sailormike4.jpg" alt="Resort view 4" class="lightbox-trigger">
+    <img src="sailormike5.jpg" alt="Resort view 5" class="lightbox-trigger">
+  </div>
+</section>
+
+<!-- LIGHTBOX -->
+<div class="lightbox" id="galleryLightbox">
+  <span class="close-lightbox">&times;</span>
+  <img class="lightbox-content" id="lightboxImg">
+</div>
+
+<!-- LIVE NAVIGATION MAP -->
+<section class="location-section">
+  <h2>Live Navigation Map</h2>
+  <p>See your position and route to Sailor Mike Private Resort</p>
+  <div id="liveMap" data-lat="15.3560" data-lng="121.0050"></div>
+</section>
+
+<!-- GOOGLE MAPS ROUTE -->
+<section class="map-navigation">
+  <h2>Navigation Map</h2>
+  <div id="map" data-lat="15.3560" data-lng="121.0050"></div>
+</section>
+
+<!-- EXTERNAL JS -->
+<script src="resorts.js"></script>
+<script async 
+    src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&callback=initMap">
+</script>
+
+<!-- FOOTER -->
+<footer>
+  <p>© Peñaranda_vista.ph</p>
+</footer>
+
+</body>
+</html>

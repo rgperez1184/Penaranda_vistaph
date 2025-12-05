@@ -1,0 +1,241 @@
+/* ============================= */
+/* GLOBAL STYLES */
+/* ============================= */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Georgia', serif;
+}
+
+body {
+    background-color: #E8F5E9;
+    color: #2E3A2B;
+    line-height: 1.6;
+    padding-bottom: 50px;
+}
+
+h1, h2, h3 {
+    color: #2E7D32;
+}
+
+h1 {
+    font-size: 42px;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+h2 {
+    font-size: 32px;
+    margin-bottom: 15px;
+    text-align: center;
+}
+
+h3 {
+    font-size: 24px;
+    margin-bottom: 10px;
+}
+div a{
+    font-size:25px;
+}
+/* ============================= */
+/* NAVIGATION BAR */
+/* ============================= */
+.topnav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 50px;
+    background: #A5D6A7;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    border-bottom: 1px solid #8BC34A;
+}
+
+.topnav .site-name {
+    font-size: 22px;
+    font-weight: bold;
+    color: #4E342E;
+    text-decoration: none;
+}
+
+.topnav .menu {
+    display: flex;
+    gap: 25px;
+}
+
+.topnav .menu a {
+    text-decoration: none;
+    color: #2E7D32;
+    font-weight: 500;
+    transition: 0.3s;
+}
+
+.topnav .menu a:hover {
+    color: #FF7043;
+}
+
+/* ============================= */
+/* ABOUT US SECTION */
+/* ============================= */
+.about-section {
+    max-width: 900px;
+    margin: 50px auto;
+    padding: 0 20px;
+}
+
+.about-section p {
+    font-size: 18px;
+    margin-bottom: 20px;
+    line-height: 1.8;
+}
+
+/* ============================= */
+/* MAYOR SECTION */
+/* ============================= */
+.mayor-section {
+    text-align: center;
+    padding: 60px 20px;
+    background: #C8E6C9;
+    margin-top: 50px;
+    border-radius: 15px;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+    transition: transform 0.3s ease;
+}
+
+.mayor-section:hover {
+    transform: scale(1.02);
+}
+
+.mayor-section img.mayor-img {
+    width: 280px;
+    height: 280px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 4px solid #388E3C;
+    margin-bottom: 20px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.mayor-section img.mayor-img:hover {
+    transform: scale(1.1);
+    box-shadow: 0 10px 25px rgba(46, 61, 43, 0.4);
+}
+
+.mayor-section h3 {
+    margin-bottom: 10px;
+    color: #2E7D32;
+}
+
+.mayor-section p {
+    font-size: 18px;
+    color: #2E3A2B;
+}
+
+/* ============================= */
+/* MISSION & VISION */
+/* ============================= */
+.mv-section {
+    max-width: 1000px;
+    margin: 50px auto;
+    padding: 0 20px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 30px;
+}
+
+.mv-box {
+    background: #F1F8E9;
+    border-left: 7px solid #388E3C;
+    padding: 25px;
+    border-radius: 15px;
+    box-shadow: 0 6px 20px rgba(46,61,43,0.15);
+    transition: 0.3s;
+}
+
+.mv-box:hover {
+    transform: translateY(-5px) scale(1.03);
+    background: #D4EED7;
+}
+
+/* ============================= */
+/* CONTACT & HOTLINES */
+/* ============================= */
+.contact-section {
+    max-width: 900px;
+    margin: 50px auto;
+    padding: 20px;
+}
+
+.contact-box {
+    background: #F1F8E9;
+    border-left: 7px solid #388E3C;
+    padding: 20px;
+    border-radius: 15px;
+    box-shadow: 0 4px 15px rgba(46,61,43,0.15);
+    margin-bottom: 30px;
+}
+
+.contact-box p {
+    font-size: 18px;
+    margin-bottom: 10px;
+}
+
+.map-box {
+    background: #C8E6C9;
+    padding: 20px;
+    border-radius: 15px;
+    box-shadow: 0 4px 15px rgba(46,61,43,0.15);
+}
+
+.map-box h3 {
+    margin-bottom: 15px;
+}
+
+/* ============================= */
+/* FOOTER */
+/* ============================= */
+footer {
+    width: 100%;
+    background: #2E3A2B;
+    color: #E8F5E9;
+    text-align: center;
+    padding: 40px 20px;
+    margin-top: 60px;
+}
+
+footer a {
+    color: #C8E6C9;
+    text-decoration: none;
+    transition: 0.3s;
+}
+
+footer a:hover {
+    color: #FF7043;
+}
+
+/* ============================= */
+/* RESPONSIVE DESIGN */
+/* ============================= */
+@media (max-width: 768px) {
+    .topnav {
+        flex-direction: column;
+        gap: 10px;
+        padding: 15px 20px;
+    }
+    .topnav .menu {
+        gap: 15px;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+}
+
+@media (max-width: 480px) {
+    h1 { font-size: 32px; }
+    h2 { font-size: 28px; }
+    h3 { font-size: 20px; }
+    .about-section p, .contact-box p { font-size: 16px; }
+}

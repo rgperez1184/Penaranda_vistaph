@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Book a Resort — Peñaranda_Vista</title>
+<link rel="stylesheet" href="pen.css">
+<link rel="stylesheet" href="booking.css">
+</head>
+<body>
+
+<header>
+  <nav class="topnav">
+    <a href="index.html" class="site-name">Peñaranda_<span class="italic">Vista</span></a>
+    <div class="menu">
+      <a href="index.html">CONTACT</a>
+      <a href="resorts.html">RESORTS</a>
+      <a href="explore.html">EXPLORE</a>
+    </div>
+  </nav>
+</header>
+
+<section class="book-hero">
+  <h1>Book a Reservation</h1>
+  <p>Fill out the form to request a reservation at any partner resort.</p>
+</section>
+
+<section class="booking-form">
+  <form>
+
+    <label>Full Name</label>
+    <input type="text" required>
+
+    <label>Phone Number</label>
+    <input type="text" required>
+
+    <label>Choose Resort</label>
+    <select required>
+      <option value="">Select...</option>
+      <option>Sailor Mike Private Resort</option>
+      <option>Villa Victoria Resort</option>
+      <option>Blue Lagoon Pool</option>
+    </select>
+
+    <label>Date of Reservation</label>
+    <input type="date" required>
+
+    <label>Time Slot</label>
+    <select required>
+      <option>Daytime</option>
+      <option>Overnight</option>
+      <option>Whole Day</option>
+    </select>
+
+    <label>Number of Guests</label>
+    <input type="number" min="1" required>
+
+    <label>Additional Notes</label>
+    <textarea rows="4"></textarea>
+
+    <button type="submit">Submit Booking Request</button>
+
+  </form>
+</section>
+
+<footer>© Peñaranda_vista.ph</footer>
+
+</body>
+</html>

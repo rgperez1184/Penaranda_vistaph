@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Villa Natashlie — Peñaranda_Vista</title>
+<link rel="stylesheet" href="resorts.css">
+
+<!-- Leaflet Map -->
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
+<link rel="stylesheet" href="https://unpkg.com/leaflet-routing-machine@latest/dist/leaflet-routing-machine.css" />
+
+<!-- Leaflet JS -->
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<script src="https://unpkg.com/leaflet-routing-machine@latest/dist/leaflet-routing-machine.js"></script>
+</head>
+<body>
+
+<!-- TOP NAV -->
+<div class="topnav">
+    <a href="index.html" class="site-name">Peñaranda_<span class="italic">Vista</span></a>
+    <div class="menu">
+        <a href="contact.html">CONTACT</a>
+        <a href="resorts.html">HOME</a>
+        <a href="explore.html">EXPLORE</a>
+    </div>
+    <button class="dark-toggle" onclick="document.body.classList.toggle('dark')">Dark Mode</button>
+</div>
+<!-- FLOATING BOOK NOW BUTTON -->
+<a href="booking.html" class="book-now-btn">BOOK NOW</a>
+
+<!-- HERO SLIDESHOW -->
+<section class="resort-hero">
+  <h1>Villa Natashlie</h1>
+  <p>Private villa ideal for celebrations with pool, cottages, and event-ready spaces.</p>
+  <div class="slideshow-wrap">
+    <img id="slideImg" class="slide lightbox-trigger" src="natashlie1.jpg" alt="Villa Natashlie">
+  </div>
+  <div class="thumb-row">
+    <img src="natashlie1.jpg" onclick="pick(0)" class="lightbox-trigger">
+    <img src="natashlie2.jpg" onclick="pick(1)" class="lightbox-trigger">
+    <img src="natashlie3.jpg" onclick="pick(2)" class="lightbox-trigger">
+  </div>
+</section>
+
+<!-- ROOM OFFERS -->
+<section class="room-offers">
+  <h2>Room & Cottage Offers</h2>
+  <div class="offers-container">
+    <div class="offer-card">
+      <img src="natashlie_cottage1.jpg" alt="Cottage A">
+      <h3>Cottage A</h3>
+      <p>4-person cottage with pool access.</p>
+      <p class="price">₱3,500 / Day Use</p>
+    </div>
+    <div class="offer-card">
+      <img src="natashlie_cottage2.jpg" alt="Cottage B">
+      <h3>Cottage B</h3>
+      <p>6-person family cottage with lounge area.</p>
+      <p class="price">₱5,000 / Day Use</p>
+    </div>
+    <div class="offer-card">
+      <img src="natashlie_event.jpg" alt="Event Package">
+      <h3>Event Package</h3>
+      <p>Full-day villa access for private events and celebrations.</p>
+      <p class="price">₱7,500 / Event</p>
+    </div>
+  </div>
+</section>
+
+<!-- GALLERY -->
+<section class="resort-gallery">
+  <h2>Gallery</h2>
+  <div class="gallery-grid">
+    <img src="natashlie1.jpg" class="lightbox-trigger">
+    <img src="natashlie2.jpg" class="lightbox-trigger">
+    <img src="natashlie3.jpg" class="lightbox-trigger">
+    <img src="natashlie4.jpg" class="lightbox-trigger">
+    <img src="natashlie5.jpg" class="lightbox-trigger">
+  </div>
+</section>
+
+<!-- LIGHTBOX -->
+<div class="lightbox" id="galleryLightbox">
+  <span class="close-lightbox">&times;</span>
+  <img class="lightbox-content" id="lightboxImg">
+</div>
+
+<!-- LIVE MAP -->
+<section class="location-section">
+  <h2>Live Navigation Map</h2>
+  <p>See your position and route to Villa Natashlie.</p>
+  <div class="voice-toggle">
+    <button id="voiceBtn" class="inactive">Enable Voice Guidance</button>
+    <div id="voiceStatus">Voice: Off</div>
+  </div>
+  <div id="liveMap"></div>
+  <p id="navInfo" style="margin-top:8px;"></p>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <p>© Peñaranda_vista.ph</p>
+</footer>
+
+<!-- JS -->
+<script>
+// HERO SLIDESHOW
+const images = ["natashlie1.jpg","natashlie2.jpg","natashlie3.jpg"];
+let i = 0;
+const el = document.getElementById('slideImg');
+setInterval(()=>{ i=(i+1)%images.length; if(el) el.src=images[i]; },4000);
+function pick(n){ i=n; if(el) el.src=images[n]; }
+
+// LIGHTBOX
+const lightbox = document.getElementById('galleryLightbox');
+const lightboxImg = document.getElementById('lightboxImg');
+const closeBtn = document.querySelector('.close-lightbox') || null;
+document.querySelectorAll('.lightbox-trigger').forEach(img=>{
+  img.addEventListener('click', function(){
+    if(!lightbox) return;
+    lightbox.style.display = 'flex';
+    lightboxImg.src = this.src;
+  });
+});
+if(closeBtn) closeBtn.addEventListener('click', ()=>lightbox.style.display='none');
+if(lightbox) lightbox.addEventListener('click', e=>{ if(e.target===lightbox) lightbox.style.display='none'; });
+
+// LEAFLET MAP + ROUTING
+const DEST = {lat:15.3505, lng:121.0020};
+const map = L.map('liveMap').setView([DEST.lat, DEST.lng], 15);
+L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',{maxZoom:19}).addTo(map);
+const destMarker = L.marker([DEST.lat, DEST.lng]).addTo(map).bindPopup("<b>Villa Natashlie</b>");
+
+let userMarker, routingControl, lastInstruction="";
+let voiceEnabled=false;
+
+const voiceBtn = document.getElementById('voiceBtn');
+const voiceStatus = document.getElementById('voiceStatus');
+const navInfo = document.getElementById('navInfo');
+
+voiceBtn.addEventListener('click', ()=>{
+    voiceEnabled = !voiceEnabled;
+    voiceBtn.classList.toggle('inactive', !voiceEnabled);
+    voiceBtn.textContent = voiceEnabled ? 'Disable Voice Guidance' : 'Enable Voice Guidance';
+    voiceStatus.textContent = "Voice: " + (voiceEnabled?"On":"Off");
+});
+
+function speak(text){
+    if(!voiceEnabled) return;
+    const u = new SpeechSynthesisUtterance(text);
+    u.lang = "en-US";
+    u.rate = 1; u.pitch = 1;
+    window.speechSynthesis.cancel();
+    window.speechSynthesis.speak(u);
+}
+
+if(navigator.geolocation){
+    navigator.geolocation.watchPosition(updatePosition, geoError,{enableHighAccuracy:true,maxAge:0,timeout:10000});
+}else alert("Geolocation not supported");
+
+function updatePosition(pos){
+    const lat = pos.coords.latitude, lng = pos.coords.longitude;
+
+    if(!userMarker){
+        userMarker = L.marker([lat,lng]).addTo(map).bindPopup("<b>You are here</b>").openPopup();
+    }else userMarker.setLatLng([lat,lng]);
+
+    const bounds = L.latLngBounds([[lat,lng],[DEST.lat,DEST.lng]]);
+    map.fitBounds(bounds,{padding:[40,40]});
+
+    if(routingControl) map.removeControl(routingControl);
+
+    routingControl = L.Routing.control({
+        waypoints:[L.latLng(lat,lng), L.latLng(DEST.lat,DEST.lng)],
+        routeWhileDragging:false, addWaypoints:false, draggableWaypoints:false, show:false,
+        lineOptions:{styles:[{color:'blue',weight:5}]},
+        router:L.Routing.osrmv1({serviceUrl:"https://router.project-osrm.org/route/v1"}),
+        createMarker:()=>null
+    }).on('routesfound',function(e){
+        const route = e.routes[0];
+        const meters = route.summary.totalDistance;
+        const seconds = route.summary.totalTime;
+        const km = (meters/1000).toFixed(2);
+        const mins = Math.round(seconds/60);
+
+        destMarker.bindPopup(`<b>Villa Natashlie</b><br>Distance: ${km} km<br>ETA: ${mins} mins`);
+
+        const instr = route.instructions.length>0?route.instructions[0].text:"Follow route";
+        if(instr !== lastInstruction){ speak(instr); lastInstruction=instr; }
+
+        navInfo.textContent = `Distance: ${km} km, ETA: ${mins} mins`;
+    }).addTo(map);
+}
+
+function geoError(err){ alert("Enable GPS to use navigation"); }
+</script>
+
+</body>
+</html>

@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>G3 – Location Info</title>
+<link rel="stylesheet" href="pen.css">
+
+<style>
+body {
+    margin: 0;
+    padding: 0;
+    color: #f5ffe9;
+    background: url('ilog.jpg') no-repeat center center/cover;
+    background-size: cover;
+}
+
+/* OVERLAY */
+.overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.45);
+    backdrop-filter: blur(8px);
+    z-index: -1;
+}
+
+/* LOCATION DETAILS */
+.location-details {
+    padding: 70px 20px;
+    display: flex;
+    justify-content: center;
+}
+
+/* GLASS CARD */
+.details-container {
+    background: rgba(255, 255, 255, 0.16);
+    padding: 45px;
+    border-radius: 24px;
+    backdrop-filter: blur(18px);
+    max-width: 920px;
+    display: flex;
+    gap: 40px;
+    flex-wrap: wrap;
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    box-shadow: 0 0 40px rgba(0, 0, 0, 0.45);
+}
+
+/* IMAGE */
+.details-img {
+    width: 100%;
+    max-width: 420px;
+    border-radius: 18px;
+    box-shadow: 0 0 25px rgba(0,0,0,0.6);
+}
+
+/* TEXT */
+.details-text {
+    max-width: 420px;
+    font-size: 18px;
+    line-height: 1.8;
+    color: #f5f5f5;
+}
+
+.details-text h2 {
+    font-size: 33px;
+    margin-bottom: 12px;
+    color: #ffffff;
+    text-shadow: 0 0 12px rgba(0,0,0,0.45);
+}
+
+/* BUTTONS */
+.directions-btn,
+.back-btn {
+    display: inline-block;
+    padding: 13px 25px;
+    color: white;
+    border-radius: 12px;
+    text-decoration: none;
+    font-weight: 600;
+    transition: 0.3s;
+    margin-top: 15px;
+}
+
+.directions-btn { background: #2e7d32; }
+.directions-btn:hover { background: #43a047; }
+
+.back-btn { background: #535353; }
+.back-btn:hover { background: #6f6f6f; }
+
+/* GALLERY */
+.gallery-section {
+    padding: 50px 20px;
+    display: flex;
+    justify-content: center;
+}
+
+.gallery-card {
+    background: rgba(255,255,255,0.16);
+    padding: 40px;
+    border-radius: 24px;
+    backdrop-filter: blur(18px);
+    max-width: 920px;
+    width: 100%;
+    border: 1px solid rgba(255,255,255,0.25);
+    box-shadow: 0 0 40px rgba(0,0,0,0.45);
+}
+
+.gallery-title {
+    font-size: 30px;
+    margin-bottom: 20px;
+    text-align: center;
+    color: #ffffff;
+    text-shadow: 0 0 12px rgba(0,0,0,0.45);
+}
+
+.gallery {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 18px;
+}
+
+.gallery img {
+    width: 100%;
+    border-radius: 15px;
+    cursor: pointer;
+    box-shadow: 0 0 15px rgba(0,0,0,0.6);
+    transition: transform 0.3s;
+}
+
+.gallery img:hover { transform: scale(1.07); }
+
+/* LIGHTBOX */
+#lightbox {
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.85);
+    display: none;
+    justify-content: center;
+    align-items: center;
+    z-index: 999;
+}
+
+#lightbox img {
+    max-width: 92%;
+    max-height: 86%;
+    border-radius: 18px;
+}
+
+#lightbox span {
+    position: absolute;
+    top: 30px;
+    right: 45px;
+    font-size: 45px;
+    color: white;
+    cursor: pointer;
+}
+</style>
+
+</style>
+</head>
+<body>
+
+<div class="overlay"></div>
+
+<!-- TOP NAV -->
+<div class="topnav">
+    <a href="index.html" class="site-name">
+        Peñaranda_<span class="italic">Vista</span> 🇵🇭
+    </a>
+
+    <div class="menu">
+        <a href="index.html">HOME</a>
+        <a href="resorts.html">RESORTS</a>
+        <a href="#">FOOD PLACE</a>
+    </div>
+</div>
+
+<!-- IMAGE + DETAILS -->
+<section class="location-details">
+    <div class="details-container">
+
+        <!-- IMAGE -->
+        <img src="ilog.jpg" alt="Ilog Location" class="details-img">
+
+        <!-- TEXT DESCRIPTION -->
+        <div class="details-text">
+            <h2>About This Location</h2>
+
+            <p>
+                This riverside area in Peñaranda is known for its peaceful atmosphere and refreshing 
+                natural surroundings. With the gentle flow of the river, cool breeze, and open view of 
+                the countryside, it has become a favorite spot for visitors who want to relax and 
+                escape from the noise of town life.
+             </p><br>
+             <P>
+                Families and friends often come here to unwind, take pictures, or simply enjoy the 
+                calming sound of water. Whether you're stopping by for a short break or spending time 
+                with nature, this place highlights the quiet and simple beauty of Peñaranda’s rural 
+                landscape.
+            </p>
+            
+            <a href="https://maps.app.goo.gl/VGMKEFpruEGK7usz9" target="_blank"
+                class="directions-btn">View Location on Map</a>
+
+            <br><br>
+
+            <a href="explore.html" class="back-btn">← Back to Home</a>
+        </div>
+
+    </div>
+</section>
+
+<!-- PHOTO GALLERY -->
+<section class="gallery-section">
+    <div class="gallery-card">
+        <h2 class="gallery-title">Gallery</h2>
+        <div class="gallery">
+            <img src="ilog1.jpg" alt="River view 1">
+            <img src="ilog2.jpg" alt="River view 2">
+            <img src="ilog3.jpg" alt="River view 3">
+          
+        </div>
+    </div>
+</section>
+
+<!-- LIGHTBOX -->
+<div id="lightbox">
+    <span>&times;</span>
+    <img id="lightbox-img">
+</div>
+
+<footer>
+  <p>Contact us: <a href="mailto:yourgmail@gmail.com">Peñaranda_vista@gmail.com</a></p>
+  <p>© Peñaranda_vista.ph — All Rights Reserved</p>
+</footer>
+
+<script>
+    // LIGHTBOX SCRIPT
+    const galleryImages = document.querySelectorAll(".gallery img");
+    const lightbox = document.getElementById("lightbox");
+    const lightboxImg = document.getElementById("lightbox-img");
+    const close = lightbox.querySelector("span");
+
+    galleryImages.forEach(img => {
+        img.addEventListener("click", () => {
+            lightbox.style.display = "flex";
+            lightboxImg.src = img.src;
+        });
+    });
+
+    close.onclick = () => lightbox.style.display = "none";
+    lightbox.onclick = e => { if (e.target === lightbox) lightbox.style.display = "none"; };
+</script>
+
+</body>
+</html>

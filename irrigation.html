@@ -1,0 +1,504 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>G1 – Location Info & Finder</title>
+<link rel="stylesheet" href="pen.css">
+
+<style>
+/* CSS Styles for the entire page (Based on your "glass-card" design) */
+body {
+    margin: 0;
+    padding: 0;
+    color: #f5ffe9;
+    background: url('irrigation.jpg') no-repeat center center/cover;
+    font-family: 'Segoe UI', sans-serif;
+} 
+
+.overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.35);
+    backdrop-filter: blur(4px);
+    z-index: -1;
+}
+
+.section {
+    padding: 60px 20px;
+    display: flex;
+    justify-content: center;
+}
+
+.glass-card {
+    background: rgba(255, 255, 255, 0.18);
+    padding: 35px;
+    border-radius: 20px;
+    backdrop-filter: blur(12px);
+    max-width: 950px;
+    width: 100%;
+    border: 1px solid rgba(255, 255, 255, 0.35);
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.4);
+    color: black;
+    transition: transform 0.3s;
+}
+
+.glass-card:hover {
+    transform: translateY(-5px);
+}
+
+.details-container {
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.details-img, .details-video {
+    width: 100%;
+    max-width: 420px;
+    border-radius: 17px;
+    box-shadow: 0 0 25px rgba(0,0,0,0.5);
+}
+
+.details-video video {
+    width: 100%;
+    border-radius: 17px;
+}
+
+.details-text {
+    max-width: 420px;
+    color: white;
+    font-size: 22px;
+    line-height: 1.8;
+    text-align: center;
+    margin: 0 auto;
+}
+
+.details-text h2 {
+    font-size: 32px;
+    color: white;
+    margin-bottom: 10px;
+    text-shadow: 0 0 12px rgba(0,0,0,0.3);
+}
+
+.btn {
+    display: inline-block;
+    padding: 12px 22px;
+    color: white;
+    border-radius: 10px;
+    text-decoration: none;
+    font-weight: 600;
+    transition: 0.3s;
+    margin-top: 10px;
+}
+
+.map-btn { background: #2e7d32; }
+.map-btn:hover { background: #43a047; }
+
+.back-btn { background: #4e4e4e; }
+.back-btn:hover { background: #6f6f6f; }
+
+/* Gallery and Lightbox styles (as you provided) */
+.gallery-title {
+    font-size: 28px;
+    margin-bottom: 15px;
+    text-align: center;
+    text-shadow: 0 0 8px rgba(0,0,0,0.3);
+}
+
+.gallery {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 15px;
+    margin-top: 20px;
+}
+
+.gallery img {
+    width: 100%;
+    border-radius: 12px;
+    transition: 0.3s;
+    cursor: pointer;
+    box-shadow: 0 0 15px rgba(0,0,0,0.5);
+}
+
+.gallery img:hover {
+    transform: scale(1.05);
+}
+
+#lightbox {
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.8);
+    display: none;
+    justify-content: center;
+    align-items: center;
+    z-index: 999;
+}
+
+#lightbox img {
+    max-width: 90%;
+    max-height: 85%;
+    border-radius: 15px;
+}
+
+#lightbox span {
+    position: absolute;
+    top: 25px;
+    right: 40px;
+    font-size: 40px;
+    color: white;
+    cursor: pointer;
+}
+
+/* 📌 NEW STYLES FOR LOCATION FINDER 📌 */
+.location-finder {
+    padding: 30px 0;
+    margin-top: 40px;
+    border-top: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.location-finder h2 {
+    color: white;
+    text-align: center;
+    font-size: 28px;
+    margin-bottom: 20px;
+    text-shadow: 0 0 10px rgba(0,0,0,0.5);
+}
+
+#map {
+    height: 400px;
+    width: 100%;
+    border-radius: 15px;
+    box-shadow: 0 0 20px rgba(0,0,0,0.5);
+    margin-bottom: 20px;
+}
+
+#status, #current-address {
+    color: white;
+    text-align: center;
+    font-weight: bold;
+    font-size: 1.1em;
+    padding: 10px;
+    border-radius: 8px;
+    margin-bottom: 10px;
+}
+#current-address {
+    background: rgba(0, 128, 0, 0.4);
+}
+#status {
+    background: rgba(255, 165, 0, 0.4);
+}
+
+.landmarks-list-container h3 {
+    color: white;
+    font-size: 20px;
+    margin-top: 20px;
+    margin-bottom: 15px;
+}
+
+#landmarks-list {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.landmark-item {
+    background: rgba(255, 255, 255, 0.1);
+    padding: 12px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.landmark-item img {
+    width: 50px;
+    height: 50px;
+    object-fit: cover;
+    border-radius: 8px;
+    margin-right: 15px;
+    box-shadow: none;
+    transition: none;
+    cursor: default;
+}
+
+.landmark-details h3, .landmark-details p {
+    color: white;
+    margin: 0;
+    text-align: left;
+}
+
+.landmark-details h3 {
+    font-size: 1.05em;
+    font-weight: 600;
+}
+</style>
+
+</head>
+<body>
+
+<div class="overlay"></div>
+
+<div class="topnav">
+    <a href="index.html" class="site-name">
+        Peñaranda_<span class="italic">Vista</span> 🇵🇭
+    </a>
+
+    <div class="menu">
+        <a href="index.html">HOME</a>
+        <a href="resorts.html">RESORTS</a>
+        <a href="#">FOOD PLACE</a>
+        <a href="mayor.html">ABOUT</a>
+    </div>
+</div>
+
+<section class="section">
+    <div class="glass-card">
+        <div class="details-container">
+
+            <img src="irrigation.jpg" alt="G1 Location" class="details-img">
+
+            <div class="details-video">
+                <video controls>
+                    <source src="irrivid.mp4" type="video/mp4">
+                </video>
+            </div>
+
+        </div>
+
+        <div class="details-text">
+            <h2>About This Location</h2>
+
+            <p>
+                Located in the heart of Peñaranda, this irrigation area is a hidden gem where nature and
+                everyday rural life come together. The flowing water, surrounded by golden rice fields and
+                cool fresh air, creates a peaceful escape away from the noise of town.
+            </p><br>
+            <p>
+                Locals often come here to relax, reflect, and appreciate the simple beauty of Nueva Ecija’s
+                countryside. With its calming scenery and natural light, it’s also a favorite place for
+                taking pictures and enjoying the slow, refreshing rhythm of provincial life.
+            </p><br>
+            <p>
+                Here, you can truly feel the quiet charm of Peñaranda — a place where nature reminds you to
+                breathe and slow down.
+            </p>
+
+            <a href="https://maps.app.goo.gl/TSctcoujdcb31qn48" target="_blank" class="btn map-btn">View Location on Map</a>
+
+            <br><br>
+
+            <a href="explore.html" class="btn back-btn">← Back to Home</a>
+        </div>
+
+        <div class="location-finder">
+            <h2>🌍 Hanapin ang Iyong Lokasyon at Kalapit na Landmarks</h2>
+
+            <p id="status">Hinihintay ang pahintulot...</p>
+
+            <p id="current-address">Naghahanap ng eksaktong address...</p>
+
+            <div id="map"></div>
+
+            <div class="landmarks-list-container">
+                <h3>🏛️ Mga Kalapit na Landmark (5km Radius):</h3>
+                <ul id="landmarks-list">
+                    <li>I-detect ang iyong lokasyon upang makita ang mga kalapit na lugar.</li>
+                </ul>
+            </div>
+        </div>
+        </div>
+</section>
+
+<section class="section">
+    <div class="glass-card">
+        <h2 class="gallery-title">Photo Gallery</h2>
+
+        <div class="gallery">
+            <img src="irrigationpic1.jpg">
+            <img src="irrigationpic2.jpg">
+            <img src="irrigationpiic3.jpg">
+        </div>
+    </div>
+</section>
+
+<div id="lightbox">
+    <span>×</span>
+    <img id="lightbox-img">
+</div>
+
+<footer>
+    <p>Contact us: <a href="mailto:yourgmail@gmail.com">Peñaranda_vista@gmail.com</a></p>
+    <p>© Peñaranda_vista.ph — All Rights Reserved</p>
+</footer>
+
+
+<script>
+    // Global variables para ma-access ng Google Maps API at Geolocation
+    let map;
+    let geocoder;
+    let infoWindow;
+    const statusEl = document.getElementById('status');
+    const addressEl = document.getElementById('current-address');
+    const landmarksListEl = document.getElementById('landmarks-list');
+
+    // 1. INITIATE MAP AND GEOLOCATION (Ito ang callback function ng Google Maps script)
+    function initMap() {
+        geocoder = new google.maps.Geocoder();
+        infoWindow = new google.maps.InfoWindow();
+
+        // Default map center (Peñaranda, Nueva Ecija coordinates)
+        const defaultCenter = { lat: 15.3575, lng: 121.0068 };
+
+        map = new google.maps.Map(document.getElementById("map"), {
+            center: defaultCenter,
+            zoom: 12,
+        });
+        
+        // Simulan ang Geolocation Request
+        if (navigator.geolocation) {
+            statusEl.textContent = "🧭 Nagre-request ng lokasyon...";
+            
+            navigator.geolocation.getCurrentPosition(
+                (position) => {
+                    const userLocation = { lat: position.coords.latitude, lng: position.coords.longitude };
+                    statusEl.textContent = "✅ Lokasyon ay na-detect na!";
+
+                    geocodeLatLng(userLocation); // Kunin ang address at markahan sa mapa
+                    findNearbyLandmarks(userLocation); // Hanapin ang mga kalapit na landmark
+                },
+                (error) => {
+                    handleLocationError(true, map.getCenter(), error.message);
+                },
+                { enableHighAccuracy: true, timeout: 5000, maximumAge: 0 } // Geolocation Options
+            );
+        } else {
+            handleLocationError(false, map.getCenter(), "❌ Hindi sinusuportahan ng iyong browser ang Geolocation.");
+        }
+    }
+
+    // Handle Geolocation Errors
+    function handleLocationError(browserHasGeolocation, pos, message) {
+        statusEl.textContent = `❌ Nabigo ang Geolocation: ${message}`;
+        addressEl.textContent = "Hindi ma-detect ang iyong eksaktong lokasyon.";
+    }
+
+    // 2. GEOCoding API: Convert Coordinates to Address
+    function geocodeLatLng(latlng) {
+        geocoder.geocode({ location: latlng })
+            .then((response) => {
+                if (response.results[0]) {
+                    const address = response.results[0].formatted_address;
+                    addressEl.textContent = address;
+                    
+                    map.setCenter(latlng);
+                    map.setZoom(16);
+
+                    // User Location Marker
+                    new google.maps.Marker({
+                        position: latlng,
+                        map: map,
+                        title: "Ito ang iyong lokasyon",
+                        icon: "http://maps.google.com/mapfiles/ms/icons/blue-dot.png" 
+                    });
+
+                } else {
+                    addressEl.textContent = "Walang nahanap na address.";
+                }
+            })
+            .catch((e) => {
+                addressEl.textContent = "Nabigo ang Geocoding: " + e.message;
+            });
+    }
+
+    // 3. Places API: Retrieve and Display Nearby Landmarks
+    function findNearbyLandmarks(latlng) {
+        landmarksListEl.innerHTML = '';
+        
+        const request = {
+            location: latlng,
+            radius: '5000', // 5km radius
+            type: ['church', 'park', 'tourist_attraction', 'place_of_interest'],
+            rankby: google.maps.places.RankBy.PROMINENCE
+        };
+
+        const service = new google.maps.places.PlacesService(map);
+
+        service.nearbySearch(request, (results, status) => {
+            if (status === google.maps.places.PlacesServiceStatus.OK && results) {
+                
+                const topResults = results.slice(0, 5); 
+
+                topResults.forEach(place => {
+                    addPlaceMarker(place);
+                    addLandmarkToList(place);
+                });
+
+            } else {
+                landmarksListEl.innerHTML = '<li>Walang kalapit na landmark na nahanap sa 5km radius.</li>';
+            }
+        });
+    }
+
+    // Helper to add marker for a landmark
+    function addPlaceMarker(place) {
+        const marker = new google.maps.Marker({
+            map: map,
+            position: place.geometry.location,
+            title: place.name,
+            icon: "http://maps.google.com/mapfiles/ms/icons/green-dot.png" 
+        });
+
+        // Info window when marker is clicked
+        marker.addListener("click", () => {
+            infoWindow.setContent(`<strong>${place.name}</strong><br>${place.vicinity || ''}`);
+            infoWindow.open(map, marker);
+        });
+    }
+
+    // Helper to add landmark details to the list
+    function addLandmarkToList(place) {
+        let photoUrl = 'default_placeholder.jpg'; // Default placeholder if no photo
+        if (place.photos && place.photos.length > 0) {
+            photoUrl = place.photos[0].getUrl({ maxWidth: 50, maxHeight: 50 });
+        }
+
+        const listItem = document.createElement('li');
+        listItem.className = 'landmark-item';
+        listItem.innerHTML = `
+            <img src="${photoUrl}" alt="${place.name} Photo">
+            <div class="landmark-details">
+                <h3>${place.name}</h3>
+                <p>${place.vicinity || place.formatted_address}</p>
+            </div>
+        `;
+        landmarksListEl.appendChild(listItem);
+    }
+
+
+    // 4. LIGHTBOX SCRIPT
+    const galleryImages = document.querySelectorAll(".gallery img");
+    const lightbox = document.getElementById("lightbox");
+    const lightboxImg = document.getElementById("lightbox-img");
+    const close = lightbox.querySelector("span");
+
+    galleryImages.forEach(img => {
+        img.addEventListener("click", () => {
+            lightbox.style.display = "flex";
+            lightboxImg.src = img.src;
+        });
+    });
+
+    close.onclick = () => lightbox.style.display = "none";
+    lightbox.onclick = e => { if (e.target === lightbox) lightbox.style.display = "none"; };
+</script>
+
+<script async defer
+    src="https://maps.googleapis.com/maps/api/js?key=IYONG_API_KEY_DITO&libraries=places&callback=initMap">
+</script>
+
+</body>
+</html>

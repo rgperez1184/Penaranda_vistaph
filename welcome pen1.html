@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>G5 – Location Info</title>
+    <link rel="stylesheet" href="pen.css">
+
+    <style>
+       /* Background */
+body {
+    margin: 0;
+    padding: 0;
+    background: url('welcome.jpg') no-repeat center center/cover;
+    font-family: 'Segoe UI', sans-serif;
+    color: #f5ffe9;
+}
+
+/* Overlay */
+.overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.45);
+    backdrop-filter: blur(6px);
+    z-index: -1;
+}
+
+/* Section layout */
+.location-details {
+    padding: 60px 20px;
+    display: flex;
+    justify-content: center;
+}
+
+/* Glass card */
+.details-container {
+    background: rgba(255, 255, 255, 0.20);
+    padding: 35px;
+    border-radius: 20px;
+    backdrop-filter: blur(14px);
+    max-width: 950px;
+    width: 100%;
+    display: flex;
+    gap: 25px;
+    flex-wrap: wrap;
+    border: 1px solid rgba(255, 255, 255, 0.40);
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.35);
+}
+
+/* Image */
+.details-img {
+    width: 100%;
+    max-width: 420px;
+    border-radius: 18px;
+    box-shadow: 0 0 20px rgba(0,0,0,0.5);
+}
+
+/* Text */
+.details-text {
+    max-width: 420px;
+    font-size: 17px;
+    line-height: 1.7;
+    color: #ffffffde;
+}
+
+.details-text h2 {
+    font-size: 32px;
+    margin-bottom: 12px;
+    color: #eaf7e1;
+    text-shadow: 0 0 12px rgba(0,0,0,0.4);
+}
+
+/* Buttons */
+.directions-btn,
+.back-btn {
+    display: inline-block;
+    padding: 12px 22px;
+    border-radius: 12px;
+    text-decoration: none;
+    font-weight: 600;
+    transition: 0.3s;
+    margin-top: 10px;
+    color: #fff;
+}
+
+.directions-btn {
+    background: #2e7d32;
+}
+.directions-btn:hover {
+    background: #43a047;
+}
+
+.back-btn {
+    background: #4e4e4e;
+}
+.back-btn:hover {
+    background: #6d6d6d;
+}
+
+    </style>
+</head>
+<body>
+
+<div class="overlay"></div>
+
+<!-- TOP NAV -->
+<div class="topnav">
+    <a href="index.html" class="site-name">
+        Peñaranda_<span class="italic">Vista</span> <span class="flag">🇵🇭</span>
+    </a>
+
+    <div class="menu">
+        <a href="index.html">HOME</a>
+        <a href="resorts.html">RESORTS</a>
+        <a href="foodplace.html">FOOD PLACE</a>
+    </div>
+</div>
+
+<!-- IMAGE + DETAILS -->
+<section class="location-details">
+    <div class="details-container">
+
+        <!-- IMAGE -->
+        <img src="welcome.jpg" alt="G5 Location" class="details-img">
+
+        <!-- TEXT DESCRIPTION -->
+        <div class="details-text">
+            <h2>About This Place</h2>
+
+            <p>
+                This place in Peñaranda is quiet and very refreshing. It is surrounded by green scenery, 
+             cool air, and wide fields that show the natural beauty of the province.
+             </p><br>
+
+             <p>
+             Many people pass by to rest, take pictures, and feel the simple life of the countryside. 
+             It’s a reminder that sometimes, a peaceful view is enough to relax and appreciate the 
+             beauty of rural living.
+            </p>
+
+            <a href="https://maps.app.goo.gl/uNLMzDKmK8NdfCeb7" target="_blank"
+                class="directions-btn">View on Google Maps</a>
+
+            <br><br>
+
+            <a href="explore.html" class="back-btn">← Back to Home</a>
+        </div>
+
+    </div>
+</section>
+<footer>
+  <p>Contact us: <a href="mailto:yourgmail@gmail.com">Peñaranda_vista@gmail.com</a></p>
+  <p>© Peñaranda_vista.ph — All Rights Reserved</p>
+</footer>
+
+</body>
+</html>
