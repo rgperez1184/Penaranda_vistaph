@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Landmark Finder – Peñaranda_Vista</title>
+    
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #eef1f6;
+            color: #333;
+            margin: 0;
+            padding: 0;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 30px auto;
+            padding: 30px;
+            background: #fff;
+            border-radius: 12px;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Header Styling */
+        .page-header {
+            text-align: center;
+            margin-bottom: 30px;
+            border-bottom: 2px solid #007bff;
+            padding-bottom: 15px;
+        }
+
+        .page-header h1 {
+            color: #007bff;
+            font-size: 2.5em;
+            margin: 0;
+        }
+
+        /* Status and Address Display */
+        #status {
+            font-size: 1.1em;
+            font-weight: 600;
+            color: #ff6600; /* Orange for waiting/status */
+            margin-bottom: 15px;
+            text-align: center;
+        }
+
+        #current-address {
+            font-size: 1.2em;
+            font-weight: 500;
+            color: #008000; /* Green for success/address */
+            padding: 10px;
+            background-color: #e6ffe6;
+            border-radius: 6px;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        /* Map Styling */
+        #map {
+            height: 500px; /* Mas mataas na mapa */
+            width: 100%;
+            border-radius: 10px;
+            margin: 20px 0;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Layout for Map and Landmarks List */
+        .content-layout {
+            display: flex;
+            gap: 30px;
+            margin-top: 20px;
+        }
+        
+        .map-section, .landmarks-section {
+            flex: 1;
+            min-width: 400px; /* Base width */
+        }
+
+        .landmarks-section h2 {
+            font-size: 1.8em;
+            color: #007bff;
+            border-bottom: 3px solid #007bff;
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+        }
+
+        /* Landmarks List Card Styling */
+        #landmarks-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .landmark-item {
+            display: flex;
+            align-items: flex-start;
+            padding: 15px;
+            margin-bottom: 12px;
+            border-radius: 10px;
+            background-color: #f8faff; /* Light blue background for cards */
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+            border-left: 5px solid #ff7f50; /* Orange accent */
+            transition: transform 0.2s, background-color 0.2s;
+            cursor: pointer;
+        }
+
+        .landmark-item:hover {
+            transform: translateY(-3px);
+            background-color: #e6f0ff; /* Lighten on hover */
+        }
+
+        .landmark-item img {
+            width: 90px;
+            height: 90px;
+            object-fit: cover;
+            border-radius: 8px;
+            margin-right: 20px;
+        }
+
+        .landmark-details h3 {
+            margin: 0 0 5px 0;
+            color: #333;
+            font-size: 1.2em;
+        }
+
+        .landmark-details p {
+            margin: 0;
+            color: #666;
+            font-size: 0.95em;
+        }
+        
+        /* Responsive adjustments */
+        @media (max-width: 992px) {
+            .content-layout {
+                flex-direction: column;
+            }
+            .map-section, .landmarks-section {
+                min-width: unset;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <main class="container">
+        <header class="page-header">
+            <h1>📍 Landmark & Location Finder</h1>
+            <p>Gamitin ang iyong lokasyon para mahanap ang mga kalapit na atraksyon sa Peñaranda.</p>
+        </header>
+
+        <p id="status">Hinihintay ang pahintulot ng lokasyon...</p>
+
+        <p id="current-address">Naghahanap ng eksaktong address...</p>
+
+        <div class="content-layout">
+            
+            <div class="map-section">
+                <div id="map"></div>
+            </div>
+            
+            <div class="landmarks-section">
+                <h2>🏛️ Mga Kalapit na Landmark:</h2>
+                <ul id="landmarks-list">
+                    <li>Naghahanap ng mga malapit na lugar...</li>
+                </ul>
+            </div>
+        </div>
+    </main>
+    
+   <script async defer
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDCS_4YDn3PHJJ6PpBgr7R8IsXBioCp2Y8&libraries=places&callback=initMap">
+</script>
+    
+    <script src="landmark.js"></script>
+</body>
+</html>
