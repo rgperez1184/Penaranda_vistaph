@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Plan Your Trip | Peñaranda Vista PH</title>
+    
+    <style>
+        /* == Nature Color Palette == (Same as index.html) */
+        :root {
+            --color-dark-green: #2B4742; /* Deep Forest */
+            --color-teal: #4A8778;       /* Moss Green */
+            --color-light-green: #E6F0E0; /* Mint Cream */
+            --color-accent: #C77D5E;      /* Terracotta/Earth */
+            --color-text: #F8F8F8;        
+            --color-bg: #F5F5EC;          
+            --color-card-bg: #FFFFFF;     
+            --color-shadow: rgba(0, 0, 0, 0.15); /* Slightly darker shadow */
+            --color-alert: #D9534F;       
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--color-bg);
+            color: var(--color-dark-green);
+            margin: 0;
+            padding: 0;
+            line-height: 1.6;
+        }
+        
+        /* == Navigation & Header Styles == */
+        .top-nav {
+            background-color: var(--color-dark-green);
+            padding: 10px 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            font-size: 1.5em;
+            font-weight: bold;
+            color: var(--color-light-green);
+            display: flex;
+            align-items: center;
+        }
+
+        .nav-links a {
+            color: var(--color-light-green);
+            text-decoration: none;
+            margin-left: 25px;
+            font-size: 0.95em;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: var(--color-accent);
+        }
+
+        .content-header {
+            text-align: center;
+            padding: 60px 0 40px;
+            background-color: var(--color-card-bg);
+            border-bottom: 5px solid var(--color-teal);
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+        }
+
+        .content-header h1 {
+            color: var(--color-dark-green);
+            font-size: 3em;
+            margin-bottom: 5px;
+        }
+        
+        /* == Main Content Layout == */
+        .full-page-content {
+            padding: 50px 5%;
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 2fr; /* Layout: 1/3 sidebar, 2/3 main content */
+            gap: 40px;
+        }
+        
+        .sidebar-menu {
+            position: sticky; /* Sticky menu */
+            top: 20px;
+            align-self: start;
+        }
+
+        .sidebar-menu h2 {
+            font-size: 1.6em;
+            color: var(--color-teal);
+            border-bottom: 2px solid var(--color-accent);
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+        }
+
+        .sidebar-menu a {
+            display: block;
+            padding: 12px 15px;
+            margin-bottom: 8px;
+            background-color: var(--color-card-bg);
+            border-left: 4px solid var(--color-light-green);
+            color: var(--color-dark-green);
+            text-decoration: none;
+            border-radius: 6px;
+            transition: all 0.2s;
+            font-weight: 500;
+        }
+
+        .sidebar-menu a:hover, .sidebar-menu a.active {
+            background-color: var(--color-light-green);
+            border-left-color: var(--color-accent);
+            transform: translateX(5px);
+        }
+
+        /* == Guide Sections Styling == */
+        .guide-section {
+            padding-top: 20px; /* Padding for sticky menu jump links */
+            margin-bottom: 40px;
+        }
+        
+        .guide-section h2 {
+            font-size: 2.2em;
+            color: var(--color-accent);
+            border-bottom: 3px solid var(--color-teal);
+            padding-bottom: 10px;
+            margin-bottom: 25px;
+        }
+
+        .guide-section p {
+            font-size: 1.1em;
+            margin-bottom: 20px;
+        }
+
+        /* -- Grid for Contacts/Transport -- */
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        .info-card {
+            background-color: var(--color-light-green);
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px var(--color-shadow);
+        }
+
+        .info-card h3 {
+            color: var(--color-teal);
+            font-size: 1.4em;
+            margin-top: 0;
+            display: flex;
+            align-items: center;
+        }
+
+        .info-card span {
+            font-size: 1.5em;
+            margin-right: 10px;
+        }
+
+        .info-card ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .info-card ul li {
+            font-weight: 500;
+            margin-bottom: 5px;
+        }
+
+        /* -- Footer -- */
+        .footer {
+            text-align: center;
+            padding: 30px 0;
+            background-color: var(--color-dark-green);
+            color: var(--color-light-green);
+            font-size: 0.9em;
+        }
+
+        @media (max-width: 900px) {
+            .full-page-content {
+                grid-template-columns: 1fr;
+            }
+            .sidebar-menu {
+                position: relative; /* Disable sticky sidebar on mobile */
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="top-announcement-bar">
+        </div>
+
+    <nav class="top-nav">
+        <div class="logo">
+            <span class="logo-icon">🌾</span> PEÑARANDA VISTA PH
+        </div>
+        <div class="nav-links">
+            <a href="index.html">Home</a>
+            <a href="todo.html">Things To Do</a>
+            <a href="policies.html"><P>Policies</a>
+        </div>
+    </nav>
+    
+    <header class="content-header">
+        <h1>📅 Plan Your Trip to Peñaranda</h1>
+        <p>Your essential guide to transportation, accommodation, and safety logistics.</p>
+    </header>
+
+    <div class="full-page-content">
+        
+        <aside class="sidebar-menu">
+            <h2>Quick Jump</h2>
+            <a href="#transport" class="active">🚌 Getting Here & Around</a>
+            <a href="#safety">🚨 Safety & Contacts</a>
+            <a href="#stay">🏨 Where to Stay & Eat</a>
+            <a href="#budget">💰 Budgeting Tips</a>
+        </aside>
+
+        <main class="main-content-area">
+            
+            <section id="transport" class="guide-section">
+                <h2>🚌 Transportation Guide</h2>
+                <p>Peñaranda is a key municipality in Nueva Ecija, accessible via major provincial routes. Know how to reach us and navigate the town.</p>
+
+                <div class="info-grid">
+                    <div class="info-card">
+                        <h3><span role="img" aria-label="Bus">🚍</span> Commuting from Manila</h3>
+                        <ul>
+                            <li>Take a bus (Baliwag/Five Star) bound for **Cabanatuan City**.</li>
+                            <li>From Cabanatuan Terminal, take a local jeepney or tricycle to Peñaranda.</li>
+                            <li>**Travel Time:** Approx. 3-4 hours from Metro Manila.</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="info-card">
+                        <h3><span role="img" aria-label="Tricycle">🛵</span> Getting Around Town</h3>
+                        <ul>
+                            <li>**Tricycles** are the primary mode of transport within the Poblacion and barangays.</li>
+                            <li>**Jeepneys** travel between Peñaranda and adjacent towns like Gapan.</li>
+                            <li>**Tip:** Always agree on the fare with the driver before starting your trip.</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+            
+            <section id="safety" class="guide-section">
+                <h2>🚨 Safety & Contacts</h2>
+                <p>For a worry-free visit, here are the essential local numbers and safety reminders.</p>
+                
+                <div class="info-grid">
+                    <div class="info-card">
+                        <h3><span role="img" aria-label="Police">📞</span> Emergency Hotlines</h3>
+                        <ul>
+                            <li>**PNP Peñaranda:** (044) XXX-XXXX</li>
+                            <li>**Local Health Unit:** (044) XXX-XXXX</li>
+                            <li>**Fire Station:** (044) XXX-XXXX</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="info-card">
+                        <h3><span role="img" aria-label="Handshake">🤝</span> Local Safety Tips</h3>
+                        <ul>
+                            <li>Always respect local customs and elders.</li>
+                            <li>Avoid traveling alone in unfamiliar remote areas after dark.</li>
+                            <li>Stay hydrated, especially during the hot summer months (March-May).</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <section id="stay" class="guide-section">
+                <h2>🏨 Where to Stay & Eat</h2>
+                <p>While Peñaranda offers a quiet provincial experience, major accommodation options are nearby.</p>
+                
+                <div class="info-grid">
+                    <div class="info-card">
+                        <h3><span role="img" aria-label="Hotel">🛌</span> Accommodation</h3>
+                        <p>For hotels, it is recommended to stay in **Gapan City** (20 mins away) or **Cabanatuan City** (40 mins away) which offer a wider range of lodging, from budget inns to full hotels.</p>
+                    </div>
+                    
+                    <div class="info-card">
+                        <h3><span role="img" aria-label="Restaurant">🍽️</span> Local Cuisine</h3>
+                        <p>Don't miss the local eateries near the Public Market! Look for native delicacies and fresh produce unique to Nueva Ecija's agricultural towns.</p>
+                    </div>
+                </div>
+            </section>
+            
+            <section id="budget" class="guide-section">
+                <h2>💰 Budgeting Tips</h2>
+                <p>Peñaranda is generally inexpensive, but planning your travel expenses can help you enjoy your trip better.</p>
+                <ul>
+                    <li>**Tricycle Fares:** Expect short trips (within Poblacion) to be around ₱15 - ₱25.</li>
+                    <li>**Food:** A decent meal at a local eatery typically costs ₱60 - ₱150.</li>
+                    <li>**Cash is King:** Most local businesses, market stalls, and tricycle drivers accept cash only.</li>
+                </ul>
+            </section>
+            
+        </main>
+    </div>
+
+    <footer class="footer">
+        <p>&copy; 2024 Peñaranda Vista PH Project. All Rights Reserved.</p>
+        <p>A community service project for Peñaranda, Nueva Ecija.</p>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const sections = document.querySelectorAll('.guide-section');
+            const navLinks = document.querySelectorAll('.sidebar-menu a');
+
+            window.addEventListener('scroll', () => {
+                let current = '';
+                sections.forEach(section => {
+                    const sectionTop = section.offsetTop;
+                    const sectionHeight = section.clientHeight;
+                    if (pageYOffset >= sectionTop - 100) { // 100px buffer
+                        current = section.getAttribute('id');
+                    }
+                });
+
+                navLinks.forEach(link => {
+                    link.classList.remove('active');
+                    if (link.href.includes(current)) {
+                        link.classList.add('active');
+                    }
+                });
+            });
+        });
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Peñaranda Vista PH - Local Advisory</title>
+    
+    <style>
+        /* == Nature Color Palette == */
+        :root {
+            /* Enhanced Nature/Earth tones for a premium feel */
+            --color-dark-green: #2B4742; /* Deep Forest */
+            --color-teal: #4A8778;       /* Moss Green */
+            --color-light-green: #E6F0E0; /* Mint Cream */
+            --color-accent: #C77D5E;      /* Terracotta/Earth */
+            --color-text: #F8F8F8;        /* Light Text */
+            --color-bg: #F5F5EC;          /* Very Light Beige/Warm Background */
+            --color-card-bg: #FFFFFF;     /* Card White */
+            --color-shadow: rgba(0, 0, 0, 0.1);
+            --color-alert: #D9534F;       /* Danger Red */
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--color-bg);
+            color: var(--color-dark-green);
+            margin: 0;
+            padding: 0;
+            line-height: 1.6;
+        }
+        
+        /* == Header & Navigation == */
+        .top-nav {
+            background-color: var(--color-dark-green);
+            padding: 10px 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 4px var(--color-shadow);
+        }
+        
+        .logo {
+            font-size: 1.5em;
+            font-weight: bold;
+            color: var(--color-light-green);
+            display: flex;
+            align-items: center;
+        }
+
+        .logo-icon {
+            font-size: 1.8em;
+            margin-right: 8px;
+            color: var(--color-teal);
+        }
+
+        .nav-links a {
+            color: var(--color-light-green);
+            text-decoration: none;
+            margin-left: 25px;
+            font-size: 0.95em;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: var(--color-accent);
+        }
+
+        /* == Hero Section (Banner) == */
+        .hero {
+            background-image: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url('placeholder-penaranda.jpg'); /* Replace with your actual image path */
+            background-size: cover;
+            background-position: center;
+            height: 60vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            color: var(--color-text);
+            padding: 0 5%;
+        }
+
+        .hero h1 {
+            font-size: 3.5em;
+            margin-bottom: 10px;
+            font-weight: 700;
+            text-shadow: 0 2px 5px rgba(0, 0, 0, 0.6);
+        }
+
+        .hero p {
+            font-size: 1.2em;
+            text-shadow: 0 1px 3px rgba(0, 0, 0, 0.8);
+        }
+
+        /* == Announcement Bar (Top Element) == */
+        .top-announcement-bar {
+            background-color: var(--color-teal);
+            color: var(--color-text);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 15px 0;
+            font-weight: 500;
+        }
+        
+        .small-text {
+            font-size: 1.1em;
+            margin-right: 20px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .small-text-link {
+            color: var(--color-dark-green);
+            text-decoration: none;
+            font-weight: 600;
+            padding: 8px 15px;
+            background-color: var(--color-light-green);
+            border-radius: 5px;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        .small-text-link:hover {
+            background-color: var(--color-dark-green);
+            color: var(--color-light-green);
+        }
+
+        /* == Content / Card Layout == */
+        .main-content {
+            padding: 50px 5%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .card-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: -100px; /* Overlap with Hero Section */
+            position: relative;
+            z-index: 10;
+        }
+
+        .card {
+            background-color: var(--color-card-bg);
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px var(--color-shadow);
+            transition: transform 0.3s;
+            min-height: 350px;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px var(--color-shadow);
+        }
+
+        .card h3 {
+            color: var(--color-accent);
+            font-size: 1.8em;
+            margin-top: 0;
+            border-bottom: 2px solid var(--color-teal);
+            padding-bottom: 10px;
+        }
+
+        /* -- List Item Styling -- */
+        .list-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+            padding: 10px;
+            border-left: 4px solid var(--color-dark-green);
+            text-decoration: none;
+            color: var(--color-dark-green);
+            transition: background-color 0.3s;
+        }
+
+        .list-item:hover {
+            background-color: var(--color-light-green);
+        }
+
+        .list-icon {
+            font-size: 1.2em;
+            margin-right: 15px;
+            color: var(--color-teal);
+        }
+
+        /* -- Map Placeholder -- */
+        .map-placeholder {
+            height: 250px;
+            background-color: #f0f0f0;
+            border-radius: 8px;
+            margin-top: 15px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            color: var(--color-dark-green);
+            font-weight: 600;
+        }
+
+        /* -- Footer -- */
+        .footer {
+            text-align: center;
+            padding: 30px 0;
+            background-color: var(--color-dark-green);
+            color: var(--color-light-green);
+            font-size: 0.9em;
+        }
+
+        /* == Responsive == */
+        @media (max-width: 768px) {
+            .top-nav {
+                flex-direction: column;
+            }
+            .nav-links {
+                margin-top: 10px;
+            }
+            .nav-links a {
+                margin: 0 10px;
+            }
+            .hero h1 {
+                font-size: 2.5em;
+            }
+            .card-container {
+                margin-top: 0; 
+                padding-top: 30px; 
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="top-announcement-bar">
+        <span class="small-text">Local Peñaranda Advisory</span>
+        <a href="#alerts" class="small-text-link">View Local Alerts →</a>
+    </div>
+
+    <nav class="top-nav">
+        <div class="logo">
+            <span class="logo-icon">🌾</span> PEÑARANDA VISTA PH
+        </div>
+        <div class="nav-links">
+            <a href="#">Home</a>
+            <a href="#destinations">Destinations</a>
+            <a href="#safety">Local Safety</a>
+            <a href="#alerts">Alerts</a>
+        </div>
+    </nav>
+
+    <header class="hero">
+        <h1>Explore the Beauty of Peñaranda</h1>
+        <p>Real-time information and guidance for your visit to Nueva Ecija.</p>
+    </header>
+
+    <main class="main-content">
+        <div class="card-container">
+            
+            <div class="card" id="alerts">
+                <h3>🔔 Local Advisories</h3>
+                <a href="#" class="list-item">
+                    <span class="list-icon">🚧</span> Road Repair: Brgy. Sinasajan to Gapan Road
+                </a>
+                <a href="#" class="list-item">
+                    <span class="list-icon">🌧️</span> Flood Watch: Low-lying areas near Peñaranda River
+                </a>
+                <a href="#" class="list-item">
+                    <span class="list-icon">📢</span> COVID-19 Alert Level: Minimum Restrictions
+                </a>
+                <a href="#" class="list-item">
+                    <span class="list-icon">💧</span> Water Interruption Schedule: Poblacion
+                </a>
+                <a href="#" style="color: var(--color-teal); text-decoration: none; font-weight: 600;">View All Local News →</a>
+            </div>
+
+            <div class="card">
+                <h3>🗺️ Local Finder Map</h3>
+                <div id="map-container" class="map-placeholder">
+                    [Placeholder for Google Maps API]
+                    <br><br>
+                    (Your Peñaranda Landmark Finder will go here)
+                </div>
+                <p style="font-size: 0.9em; margin-top: 15px;">Use your current location to find nearby offices, churches, and other points of interest in town.</p>
+            </div>
+            
+            <div class="card" id="destinations">
+                <h3>🏞️ Key Destinations</h3>
+                <a href="#" class="list-item" style="border-left-color: var(--color-accent);">
+                    <span class="list-icon">⛪</span> St. Francis of Assisi Parish
+                </a>
+                <a href="#" class="list-item" style="border-left-color: var(--color-accent);">
+                    <span class="list-icon">🏛️</span> Peñaranda Municipal Hall
+                </a>
+                <a href="#" class="list-item" style="border-left-color: var(--color-accent);">
+                    <span class="list-icon">🛣️</span> Access Roads to Gapan/Cabanatuan
+                </a>
+                <a href="#" class="list-item" style="border-left-color: var(--color-accent);">
+                    <span class="list-icon">🛒</span> Public Market (Pamilihan)
+                </a>
+                <a href="#" style="color: var(--color-teal); text-decoration: none; font-weight: 600;">View Full Directory →</a>
+            </div>
+
+        </div>
+    </main>
+
+    <footer class="footer">
+        <p>&copy; 2024 Peñaranda Vista PH Project. All Rights Reserved.</p>
+        <p>A community service project for Peñaranda, Nueva Ecija.</p>
+    </footer>
+
+</body>
+</html>

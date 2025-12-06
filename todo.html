@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Things To Do | Peñaranda Vista PH</title>
+    <style>
+        /* [Copy the entire <style> block from the index.html file here] */
+        :root {
+            --color-dark-green: #2B4742; 
+            --color-teal: #4A8778;       
+            --color-light-green: #E6F0E0; 
+            --color-accent: #C77D5E;      
+            --color-text: #F8F8F8;        
+            --color-bg: #F5F5EC;          
+            --color-card-bg: #FFFFFF;     
+            --color-shadow: rgba(0, 0, 0, 0.1);
+            --color-alert: #D9534F;       
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--color-bg);
+            color: var(--color-dark-green);
+            margin: 0;
+            padding: 0;
+            line-height: 1.6;
+        }
+
+        .top-nav, .logo, .nav-links a { /* Simplified navigation styling for brevity */
+             background-color: var(--color-dark-green);
+             color: var(--color-light-green);
+             padding: 10px 5%;
+             /* ... other nav styles ... */
+        }
+        
+        /* Apply existing styles for lists, containers, etc., from the index.html */
+        .content-header {
+            text-align: center;
+            padding: 50px 0 30px;
+            background-color: var(--color-card-bg);
+            border-bottom: 2px solid var(--color-teal);
+        }
+
+        .content-header h1 {
+            color: var(--color-dark-green);
+            font-size: 2.5em;
+        }
+
+        .full-page-content {
+            padding: 40px 5%;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+        
+        .attraction-card {
+            background-color: var(--color-card-bg);
+            padding: 25px;
+            margin-bottom: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 15px var(--color-shadow);
+            border-left: 6px solid var(--color-accent);
+        }
+
+        .attraction-card h2 {
+            color: var(--color-teal);
+            margin-top: 0;
+            font-size: 1.5em;
+        }
+        
+        /* [End of simplified <style> block] */
+    </style>
+</head>
+<body>
+
+    <div class="top-announcement-bar">
+        </div>
+
+    <nav class="top-nav">
+        <div class="nav-links">
+            <a href="index.html">Home</a>
+            <a href="todo.html" style="color: var(--color-accent);">Things To Do</a>
+            <a href="plan.html">Plan Your Trip</a>
+            <a href="index.html#alerts">Alerts</a>
+        </div>
+    </nav>
+    
+    <header class="content-header">
+        <h1>✅ Things To Do in Peñaranda</h1>
+        <p>Your guide to the best attractions, landmarks, and activities in our beautiful town.</p>
+    </header>
+
+    <main class="full-page-content">
+        
+        <div class="attraction-card">
+            <h2>⛪ St. Francis of Assisi Parish Church</h2>
+            <p><strong>Type:</strong> Historical/Religious Landmark</p>
+            <p>Visit this beautiful and historic parish church, a centerpiece of Peñaranda's faith and culture. The architecture reflects the town's rich past.</p>
+            <a href="#">View on Map</a>
+        </div>
+        
+        <div class="attraction-card">
+            <h2>🏛️ Peñaranda Municipal Hall</h2>
+            <p><strong>Type:</strong> Civic/Government Center</p>
+            <p>A great place to see the town's governance center. The grounds are often used for local events and gatherings. Located centrally near the plaza.</p>
+            <a href="#">Read History</a>
+        </div>
+
+        <div class="attraction-card">
+            <h2>🌾 Peñaranda River and Irrigation System</h2>
+            <p><strong>Type:</strong> Scenic/Nature</p>
+            <p>Peñaranda is known for its rice fields. Take a scenic drive or walk along the irrigation canals, especially during sunrise or sunset, for breathtaking views of the provincial life.</p>
+            <a href="#">View Scenic Spots</a>
+        </div>
+        
+        </main>
+
+    <footer class="footer">
+        </footer>
+
+</body>
+</html>
